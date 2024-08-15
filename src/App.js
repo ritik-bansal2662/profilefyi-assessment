@@ -9,11 +9,11 @@ function App() {
     <Router>
       <div>
         <Header />
-        <div className="w-full h-screen mt-16">
+        <main className="container w-full h-screen mt-16 p-10">
           <Routes>
             <Route path='/' element={<HomeScreen />} />
           </Routes>
-        </div>
+        </main>
       </div>
     </Router>
   );
