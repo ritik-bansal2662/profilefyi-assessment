@@ -1,17 +1,47 @@
 import React from 'react'
 import Product from '../components/Product'
+import { useLatestProductsQuery } from '../redux/api/productApi';
+import toast from 'react-hot-toast';
+import SkeletalLoader from '../components/SkeletalLoader';
 
-const addToCart = () => {
-    console.log("Product added to cart");
-    
-}
 
 const HomeScreen = () => {
+    
+    const { data, isLoading, isError } = useLatestProductsQuery();
+    // const response = useLatestProductsQuery();
+    console.log('data: ', data);
+    console.log('isLoading: ', isLoading);
+    console.log('isError: ', isError);
+    // console.log('response: ', response);
+
+    if(isError) toast.error("Could not fetch the products") 
+    
+    
+    const addToCart = () => {
+        console.log("Product added to cart");
+    }
+
   return (
     <div>
       <h1 className='text-3xl'>Latest Products</h1>
-      <section className=''>
-        <Product productId="1" name={`Titan Watch`} productImage={`https://media.istockphoto.com/id/1359180038/photo/wristwatch.jpg?s=612x612&w=0&k=20&c=AWkZ-gaLo601vG5eiQcsjYRjCjDxZdGL7v-jWvvAjEM=`} price={2000} stock={20} handler={addToCart} />
+      <section className='flex flex-row justify-between gap-2 flex-wrap'> 
+        {
+            isLoading ? (
+                <SkeletalLoader />
+            ) : isError ? (
+                <h1>Some Error Occurred. :&#40; </h1>
+            ) :(
+            data?.map((product) => (
+                <Product 
+                    productId={product.id} 
+                    name={product.title} 
+                    productImage={product.image} 
+                    price={product.price} 
+                    stock={20} 
+                    handler={addToCart} 
+                />
+            )))
+        }
       </section>
     </div>
   )

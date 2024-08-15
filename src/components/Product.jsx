@@ -2,7 +2,7 @@ import React from 'react'
 
 const Product = ({ productId, productImage, name, price,stock,handler }) => {
   return (
-    <div className="max-w-sm p-2 overflow-hidden shadow-lg border-2 rounded-sm justify-center">
+    <div className="w-72 p-4 mx-auto overflow-hidden shadow-lg border-2 rounded-sm justify-center">
         <img className='w-full' src={productImage} alt='product' />
         <p className='w-full flex justify-center'>{name}</p>
         <span className='w-full flex justify-center text-xl font-bold block'>₹ {price}</span>
