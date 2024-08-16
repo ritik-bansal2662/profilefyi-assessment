@@ -1,7 +1,7 @@
 import React from 'react'
 import Product from '../components/Product'
 import { useLatestProductsQuery } from '../redux/api/productApi';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import SkeletalLoader from '../components/SkeletalLoader';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
@@ -28,6 +28,8 @@ const HomeScreen = () => {
 
         
           dispatch(addToCart(cartItem))
+
+          toast.success("Added to Cart")
 
     }
 

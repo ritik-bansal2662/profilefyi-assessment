@@ -3,7 +3,7 @@ import CartItem from '../components/CartItem'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, calculatePrice, removeFromCart } from '../features/cart/cartSlice'
-import toast from 'react-hot-toast'
+import { toast } from 'react-toastify';
 
 const Cart = () => {
     const [couponCode, setCouponCode] = useState("")
@@ -37,6 +37,7 @@ const Cart = () => {
         console.log("remove handler",productId);
         
         dispatch(removeFromCart(productId))
+        toast.success("Item removed from cart.")
     }
     
 
