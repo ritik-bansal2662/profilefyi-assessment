@@ -3,6 +3,8 @@ import Product from '../components/Product'
 import { useLatestProductsQuery } from '../redux/api/productApi';
 import toast from 'react-hot-toast';
 import SkeletalLoader from '../components/SkeletalLoader';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../features/cart/cartSlice';
 
 
 const HomeScreen = () => {
@@ -15,10 +17,18 @@ const HomeScreen = () => {
     // console.log('response: ', response);
 
     if(isError) toast.error("Could not fetch the products") 
+
+    
+    const dispatch = useDispatch()
     
     
-    const addToCart = () => {
+    const addToCartHandler = (cartItem) => {
         console.log("Product added to cart");
+        if(cartItem.stock < 1) return toast.error("Out of Stock.")
+
+        
+          dispatch(addToCart(cartItem))
+
     }
 
   return (
@@ -36,9 +46,9 @@ const HomeScreen = () => {
                     productId={product.id} 
                     name={product.title} 
                     productImage={product.image} 
-                    price={product.price} 
-                    stock={20} 
-                    handler={addToCart} 
+                    price={product.price * 80} 
+                    stock={5} 
+                    handler={addToCartHandler} 
                 />
             )))
         }

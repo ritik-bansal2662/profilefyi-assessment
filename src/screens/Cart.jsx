@@ -1,25 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CartItem from '../components/CartItem'
 import { Link } from 'react-router-dom'
-
-const cartItems = [{
-    productId:"1",
-    productName:'Titan Watch',
-    productImage:"https://media.istockphoto.com/id/1359180038/photo/wristwatch.jpg?s=612x612&w=0&k=20&c=AWkZ-gaLo601vG5eiQcsjYRjCjDxZdGL7v-jWvvAjEM=",
-    price:2000,
-    quantity:1,
-    stock:20,
-    description: "Antique Titan watch."
-}]
-const subTotal = 4000
-const tax = Math.round(subTotal * 0.18)
-const shippingCharges = 200
-const discount = 400
-const total = subTotal + tax + shippingCharges - discount
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, calculatePrice, removeFromCart } from '../features/cart/cartSlice'
+import toast from 'react-hot-toast'
 
 const Cart = () => {
     const [couponCode, setCouponCode] = useState("")
     const [isCouponValid, setIsCouponValid] = useState(false)
+
+    const dispatch = useDispatch()
+
+    
+    const {cartItems, subtotal, tax, total, shippingCharges, discount, shippingAddress} = useSelector((state) => state.cart)
+    console.log('cartItems: ', cartItems);
+    useEffect(() => {
+        dispatch(calculatePrice())
+    }, [cartItems, dispatch])
+
+    const changeQtyHandler = (cartItem, change) => {
+        console.log("change qty handler", change);
+        if(change === -1 && cartItem.quantity === 0) {
+            toast.error("Quantity cannot be less than Zero.")
+            return;
+        }
+        else if(change === 1 && cartItem.quantity === cartItem.stock) {
+            toast.error("No more stock available.")
+            return
+        }
+        
+        
+        dispatch(addToCart({...cartItem, quantity : cartItem.quantity + change}))
+    }
+
+    const removeCartItemHandler = (productId) => {
+        console.log("remove handler",productId);
+        
+        dispatch(removeFromCart(productId))
+    }
+    
+
   return (
     <div className='h-[calc(100vh-4rem)] w-full p-4 flex justify-between gap-4'>
         <main className='w-3/4'>
@@ -29,11 +49,14 @@ const Cart = () => {
                     <CartItem 
                         key={item.productId}
                         productId={item.productId}    
-                        name={item.productName}
+                        name={item.name}
                         image={item.productImage}
                         price={item.price}
                         description={item.description}
                         qty={item.quantity}
+                        stock={item.stock}
+                        changeQuantityHandler = {changeQtyHandler}
+                        removeHandler={removeCartItemHandler}
                     />
                 ))
             ) : (
@@ -43,7 +66,7 @@ const Cart = () => {
 
         </main>
         <aside className='w-1/4 flex flex-col justify-start gap-4'>
-            <p>Subtotal: ₹{subTotal}</p>
+            <p>Subtotal: ₹{subtotal}</p>
             <p>Shipping Charges: ₹{shippingCharges}</p>
             <p>tax: ₹{tax}</p>
             <p>Discount: <em className='text-[#ff0000]'> - ₹{discount} </em></p>
