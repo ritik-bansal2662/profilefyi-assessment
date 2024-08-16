@@ -41,8 +41,8 @@ const Cart = () => {
     
 
   return (
-    <div className='h-[calc(100vh-4rem)] w-full p-4 flex justify-between gap-4'>
-        <main className='w-3/4'>
+    <div className='h-[calc(100vh-4rem)] w-screen sm:w-full md:p-4 p-1 flex flex-auto flex-wrap md:flex-nowrap justify-between gap-4'>
+        <main className='w-full md:w-3/4'>
         {
             cartItems.length > 0 ? (
                 cartItems.map((item, idx) => (
@@ -52,7 +52,7 @@ const Cart = () => {
                         name={item.name}
                         image={item.productImage}
                         price={item.price}
-                        description={item.description}
+                        category={item.category}
                         qty={item.quantity}
                         stock={item.stock}
                         changeQuantityHandler = {changeQtyHandler}
@@ -65,10 +65,10 @@ const Cart = () => {
         }
 
         </main>
-        <aside className='w-1/4 flex flex-col justify-start gap-4'>
+        <aside className='w-full md:w-1/4 p-2 lg:p-4 m-2 flex flex-col justify-start gap-4 border-2 border-solid rounded-md shadow-lg'>
             <p>Subtotal: ₹{subtotal}</p>
             <p>Shipping Charges: ₹{shippingCharges}</p>
-            <p>tax: ₹{tax}</p>
+            <p>Tax: ₹{tax}</p>
             <p>Discount: <em className='text-[#ff0000]'> - ₹{discount} </em></p>
             <b  className=''>Total: ₹{total}</b>
             <input type='text' className='p-1 outline-none border-2 border-zinc-950 rounded' value={couponCode} placeholder='Enter Coupon Code' onChange={(e) => setCouponCode(e.target.value)} />
