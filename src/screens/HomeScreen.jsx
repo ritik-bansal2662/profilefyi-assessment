@@ -32,8 +32,8 @@ const HomeScreen = () => {
     }
 
   return (
-    <div>
-      <h1 className='text-3xl'>Latest Products</h1>
+    <div className='p-7 md:p-0'>
+      <h1 className='text-3xl m-2'>Latest Products</h1>
       <section className='flex flex-row justify-between gap-2 flex-wrap'> 
         {
             isLoading ? (

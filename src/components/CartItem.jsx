@@ -1,4 +1,5 @@
 import React from 'react'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
 const CartItem = ({productId, image, price, name, category, qty, stock, changeQuantityHandler, removeHandler}) => {
@@ -27,7 +28,7 @@ const CartItem = ({productId, image, price, name, category, qty, stock, changeQu
               <button className='bg-green-700 hover:bg-green-600 text-white font-bold w-8 h-8 px-2 m-2 rounded' onClick={() => changeQuantityHandler(cartItem, 1)}>+</button>
           </div>
 
-          <button className='bg-red-600 hover:bg-red-500 text-white px-4 m-4 rounded' onClick={() => removeHandler(productId)}>Remove</button>
+          <button className='bg-red-600 hover:bg-red-500 text-white text-xl w-fit px-4 py-0.5 m-4 rounded flex flex-row items-center' onClick={() => removeHandler(productId)}><RiDeleteBin6Line /> Remove</button>
         </div>
     </div>
   )
