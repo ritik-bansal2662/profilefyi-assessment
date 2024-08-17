@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    products: [{ id:1, name: "sneaker", price:"4000", rating:"4.7", brand:"nike"}]
+    products: []
 }
 
 export const productSlice = createSlice({
-    name: 'product',
+    name: 'products',
     initialState,
     reducers: {
         getProducts: (state, action) => {} 

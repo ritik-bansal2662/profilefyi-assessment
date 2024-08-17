@@ -3,18 +3,20 @@ import Product from '../components/Product'
 import { useLatestProductsQuery } from '../redux/api/productApi';
 import { toast } from 'react-toastify';
 import SkeletalLoader from '../components/SkeletalLoader';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
 
 
 const HomeScreen = () => {
-    
+
+    // const {products} = useSelector((state) => state.products)
+    // console.log('products, in home screen: ', products);
+
     const { data, isLoading, isError } = useLatestProductsQuery();
-    // const response = useLatestProductsQuery();
     console.log('data: ', data);
     console.log('isLoading: ', isLoading);
     console.log('isError: ', isError);
-    // console.log('response: ', response);
+    
 
     if(isError) toast.error("Could not fetch the products") 
 

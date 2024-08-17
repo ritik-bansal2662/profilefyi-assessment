@@ -6,7 +6,7 @@ import { productApi } from "../redux/api/productApi";
 
 export const store = configureStore({
     reducer: {
-        'product':productReducer,
+        'products':productReducer,
         "cart":cartReducer,
         [productApi.reducerPath] : productApi.reducer,
     },
