@@ -34,7 +34,7 @@ const HomeScreen = () => {
     }
 
   return (
-    <div className='p-7 md:p-0'>
+    <div className='p-2 md:p-0'>
       <h1 className='text-3xl m-2'>Latest Products</h1>
       <section className='flex flex-row justify-between gap-2 flex-wrap'> 
         {
