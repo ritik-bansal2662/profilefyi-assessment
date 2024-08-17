@@ -9,14 +9,14 @@ import { ToastContainer } from "react-toastify";
 function App() {
   return (
 
-    <Router>
+    <Router basename="/profilefyi-assessment">
       <div>
         <Header />
         <ToastContainer />
         <main className="mx-auto mt-16 lg:p-10 md:p-5 p-0">
           <Routes>
-            <Route path='/profilefyi-assessment/' element={<HomeScreen />} />
-            <Route path='/profilefyi-assessment/cart' element={<Cart />} />
+            <Route path='/' element={<HomeScreen />} />
+            <Route path='/cart' element={<Cart />} />
           </Routes>
         </main>
       </div>
