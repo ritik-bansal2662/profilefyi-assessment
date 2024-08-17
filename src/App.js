@@ -15,8 +15,8 @@ function App() {
         <ToastContainer />
         <main className="mx-auto mt-16 lg:p-10 md:p-5 p-0">
           <Routes>
-            <Route path='/' element={<HomeScreen />} />
-            <Route path='/cart' element={<Cart />} />
+            <Route path='profilefyi-assessment/' element={<HomeScreen />} />
+            <Route path='profilefyi-assessment/cart' element={<Cart />} />
           </Routes>
         </main>
       </div>
