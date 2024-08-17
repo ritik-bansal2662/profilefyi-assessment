@@ -48,7 +48,7 @@ const HomeScreen = () => {
                     productId={product.id} 
                     name={product.title} 
                     productImage={product.image} 
-                    price={product.price * 80}
+                    price={(product.price * 80).toFixed(2)}
                     category={product.category} 
                     stock={5} 
                     handler={addToCartHandler} 
