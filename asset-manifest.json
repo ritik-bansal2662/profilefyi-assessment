@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/profilefyi-assessment/static/css/main.849990db.css",
+    "main.js": "/profilefyi-assessment/static/js/main.61d9ef0e.js",
+    "index.html": "/profilefyi-assessment/index.html",
+    "main.849990db.css.map": "/profilefyi-assessment/static/css/main.849990db.css.map",
+    "main.61d9ef0e.js.map": "/profilefyi-assessment/static/js/main.61d9ef0e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.849990db.css",
+    "static/js/main.61d9ef0e.js"
+  ]
+}
